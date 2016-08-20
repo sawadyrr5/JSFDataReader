@@ -33,7 +33,7 @@ class TestJsf(unittest.TestCase):
         actual = myJSF.pcsl()
         actual = actual.empty
         expected = pd.DataFrame()
-        expected = expected
+        expected = expected.empty
         self.assertEqual(expected, actual)
 
 
