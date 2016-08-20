@@ -15,6 +15,9 @@ class JSF:
         urls = self._web.urls('pcsl')
         df = self._download(urls)
 
+        if df.empty:
+            return df
+
         df['貸借申込日'] = pd.to_datetime(df['貸借申込日'], format='%Y%m%d')
         df['決済日'] = pd.to_datetime(df['決済日'], format='%Y%m%d')
         df = df.set_index(keys=['貸借申込日', 'コード'], drop=True)
@@ -23,6 +26,9 @@ class JSF:
     def balance(self):
         urls = self._web.urls('balance')
         df = self._download(urls)
+
+        if df.empty:
+            return df
 
         df['申込日'] = pd.to_datetime(df['申込日'], format='%Y%m%d')
         df = df.set_index(keys=['申込日', 'コード'], drop=True)
