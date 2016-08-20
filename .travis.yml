@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - 3.5.1
+
+cache: pip
+
+install:
+  - CACHE_DIR="$HOME/.cache/pip"
+  - pip install coveralls --cache-dir=$CACHE_DIR
+
+script:
+  - coverage run --source=pyjsf setup.py test
+
+after_success:
+  - coveralls
