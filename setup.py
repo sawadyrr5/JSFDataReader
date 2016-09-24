@@ -7,8 +7,8 @@ sys.path.append('./tests')
 
 setup(
     name='pyjsf',
-    version='0.0.1',
-    description='Download stock lending data from Japan Security Finance',
+    version='0.0.2',
+    description='Download loans for margin transaction data from web',
     author='@sawadybomb',
     install_requires=['pandas'],
     url='https://twitter.com/sawadybomb/',

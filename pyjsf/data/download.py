@@ -17,7 +17,7 @@ def download_csv(url) -> pd.DataFrame:
     """
     try:
         dtypes = {'コード': np.object}
-        df = pd.read_csv(urllib.request.urlopen(url), encoding='Shift_JIS', skiprows=3,dtype=dtypes)
+        df = pd.read_csv(urllib.request.urlopen(url), encoding='Shift-JIS', skiprows=4, dtype=dtypes)
     except pd.parser.CParserError:
         df = pd.DataFrame()
     finally:

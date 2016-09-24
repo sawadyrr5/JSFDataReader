@@ -1,10 +1,9 @@
 import unittest
 from datetime import datetime
 from pyjsf import JSF
-import pandas as pd
 
-sd = datetime(2016, 8, 18)
-ed = datetime(2016, 8, 18)
+sd = datetime(2016, 9, 21)
+ed = datetime(2016, 9, 21)
 
 
 class TestJsf(unittest.TestCase):
@@ -13,27 +12,16 @@ class TestJsf(unittest.TestCase):
 
     def test_pcsl(self):
         df = self.myJSF.pcsl()
-        expected = float(260)
-        target_date = datetime(2016, 8, 18)
-        actual = df.loc[(target_date, '1301')]['貸借値段（円）']
+        expected = float(272)
+        actual = df.loc[(sd, '1301')]['貸借値段（円）']
         actual = float(actual)
         self.assertEqual(expected, actual)
 
     def test_balance(self):
         df = self.myJSF.balance()
-        expected = float(1000)
-        target_date = datetime(2016, 8, 18)
-        actual = df.loc[(target_date, '1301')]['融資新規']
+        expected = float(4000)
+        actual = df.loc[(sd, '1301')]['融資新規']
         actual = float(actual)
-        self.assertEqual(expected, actual)
-
-    def test_no_data_contains(self):
-        sd = datetime(2016, 8, 11)
-        myJSF = JSF(sd, sd)
-        actual = myJSF.pcsl()
-        actual = actual.empty
-        expected = pd.DataFrame()
-        expected = expected.empty
         self.assertEqual(expected, actual)
 
 

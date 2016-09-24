@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 from pyjsf.data.download import download_csv
-from pyjsf.data.jsfurl import CreateJSFUrl
+from pyjsf.data.jsfurl import CreateUrlShina, CreateUrlZandaka
 
 
 class JSF:
@@ -9,10 +9,12 @@ class JSF:
     Pythonで日本証券金融の品貸料、信用残高を取得するクラス
     """
     def __init__(self, date_from, date_to):
-        self._web = CreateJSFUrl(date_from, date_to)
+        self.date_from = date_from
+        self.date_to = date_to
 
     def pcsl(self):
-        urls = self._web.urls('pcsl')
+
+        urls = CreateUrlShina(self.date_from, self.date_to).urls()
         df = self._download(urls)
 
         if df.empty:
@@ -24,13 +26,13 @@ class JSF:
         return df
 
     def balance(self):
-        urls = self._web.urls('balance')
+        urls = CreateUrlZandaka(self.date_from, self.date_to).urls()
         df = self._download(urls)
 
         if df.empty:
             return df
 
-        df['申込日'] = pd.to_datetime(df['申込日'], format='%Y%m%d')
+        df['申込日'] = pd.to_datetime(df['申込日'], format='%Y/%m/%d')
         df = df.set_index(keys=['申込日', 'コード'], drop=True)
         return df
 
