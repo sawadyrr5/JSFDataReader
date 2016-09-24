@@ -22,7 +22,7 @@ class JSF:
 
         df['貸借申込日'] = pd.to_datetime(df['貸借申込日'], format='%Y%m%d')
         df['決済日'] = pd.to_datetime(df['決済日'], format='%Y%m%d')
-        df = df.set_index(keys=['貸借申込日', 'コード'], drop=True)
+        df = df.set_index(keys=['貸借申込日', 'コード', '銘柄名'], drop=True)
         return df
 
     def balance(self):
@@ -33,7 +33,7 @@ class JSF:
             return df
 
         df['申込日'] = pd.to_datetime(df['申込日'], format='%Y/%m/%d')
-        df = df.set_index(keys=['申込日', 'コード'], drop=True)
+        df = df.set_index(keys=['申込日', 'コード', '銘柄名'], drop=True)
         return df
 
     @staticmethod
