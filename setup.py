@@ -10,7 +10,7 @@ setup(
     version='0.0.2',
     description='Download loans for margin transaction data from web',
     author='@sawadybomb',
-    install_requires=['pandas 0.18'],
+    install_requires=['pandas'],
     url='https://twitter.com/sawadybomb/',
     test_suite='test_jsf.suite',
     packages=find_packages(),
